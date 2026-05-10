@@ -27,7 +27,7 @@ public class TestController {
     }
 
     @PostMapping("/check")
-    public CheckAnswerResponse checkAnswer(@RequestParam Long id, @RequestParam String answer) {
+    public CheckAnswerResponse checkAnswer(@RequestParam("id") Long id, @RequestParam("answer") String answer) {
         log.info("Request to check answer for question: {}", id);
         boolean correct = testService.checkAnswer(id, answer);
         QuestionEntity question = testService.getQuestionById(id);
