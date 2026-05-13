@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/test")
 public class TestController {
-
     private final TestService testService;
 
     @GetMapping("/random")

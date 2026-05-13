@@ -2,6 +2,7 @@ package com.goncharova.project.service;
 
 import com.goncharova.project.entity.QuestionEntity;
 import org.springframework.stereotype.Service;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,25 +10,18 @@ import java.util.Random;
 
 @Service
 public class TestService {
-
     private final Random random = new Random();
 
     private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(
-                "jdbc:postgresql://localhost:5433/ege_exam",
-                "postgres",
-                "pass123"
-        );
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5433/ege_exam", "postgres", "pass123");
     }
 
     public List<QuestionEntity> getAllQuestions() {
         List<QuestionEntity> questions = new ArrayList<>();
         String sql = "SELECT * FROM questions";
-
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
-
             while (rs.next()) {
                 QuestionEntity q = new QuestionEntity();
                 q.setId(rs.getLong("id"));
